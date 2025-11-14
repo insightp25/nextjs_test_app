@@ -1,16 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { searchUsers } from "../actions/user-actions";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
 
+
+//   useEffect(() => {
+//     fetch(`/api/users?name=${"daisy"}`)
+//         .then((res) => res.json())
+//         .then((data) => {
+//             setUsers(data.users);
+//         });
+//     }, []);
   useEffect(() => {
-    fetch(`/api/users?name=${"daisy"}`)
-        .then((res) => res.json())
-        .then((data) => {
-            setUsers(data.users);
-        });
+    searchUsers("tom").then((data) => setUsers(data));
+
     }, []);
 
   return (
